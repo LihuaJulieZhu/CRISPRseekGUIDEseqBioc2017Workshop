@@ -1,7 +1,12 @@
-CRISPRseek package demo  
-Bioc2017 Boston  
-July 26th 2017  
-By Lihua Julie Zhu  
+---
+title: "Design target specific gRNAs using CRISPRseek package"
+author: "Lihua Julie Zhu"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{CRISPRseek package demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
 References  
 ========================================================

@@ -1,13 +1,12 @@
 ---
-output:
-  html_document: default
-  pdf_document: default
+title: "Analysis of GUIDE-seq data to identify offtargets using GUIDEseq package"
+author: "Lihua Julie Zhu"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{GUIDEseq package demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-GUIDEseq package demo  
-Bioc2017 Boston  
-July 26th 2017  
-By Lihua Julie Zhu  
-
 
 References  
 ========================================================
