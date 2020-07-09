@@ -271,6 +271,65 @@ Scenario 11. gRNA search and offtarget anlysis with PAM on the 5 prime side
                 subPAM.position = c(1,2))
 ```
 
+Scenario 12. Use CRISPRscan to calculate efficacy 
+======================================================
+```{r}
+results <- offTargetAnalysis(inputFilePath, annotatePaired = FALSE,
+		  annotateExon = FALSE,findPairedgRNAOnly = FALSE, chromToSearch = "chrX",
+		  max.mismatch = 0, BSgenomeName = Hsapiens,
+		  rule.set = "CRISPRscan", 
+		  baseBeforegRNA = 6, 
+		  baseAfterPAM = 6, 
+		  featureWeightMatrixFile = system.file("extdata", "Morenos-Mateo.csv", 
+		  package = "CRISPRseek"), 
+		  outputDir = outputDir, overwrite = TRUE)
+```
+
+Scenario 13. Design gRNA for base editing systems
+======================================================
+```{r}
+offTargetAnalysis(inputFilePath, findgRNAsWithREcutOnly = FALSE, 
+		  REpatternFile = REpatternFile, findPairedgRNAOnly = FALSE,  
+		  annotatePaired = FALSE,  
+		  BSgenomeName = Hsapiens, chromToSearch = "chrX",  
+		  txdb = TxDb.Hsapiens.UCSC.hg19.knownGene,  
+		  orgAnn = org.Hs.egSYMBOL, max.mismatch = 4,  
+		  outputDir = outputDir, overwrite = TRUE, PAM.location = "5prime",  
+		  PAM = "TGT", PAM.pattern = "^T[A|G]N", allowed.mismatch.PAM = 2,  
+		  subPAM.position = c(1,2), baseEditing = TRUE,  
+		  editingWindow = 10:20, targetBase = "A") 
+
+```
+
+Scenario 14. Design gRNA for prime editing systems
+======================================================
+```{r}
+inputFilePath <- DNAStringSet(paste(
+"CCAGTTTGTGGATCCTGCTCTGGTGTCCTCCACACCAGAATCAGGGATCGAAAA",
+"CTCATCAGTCGATGCGAGTCATCTAAATTCCGATCAATTTCACACTTTAAACG", sep =""))
+        names(inputFilePath) <- "testPE"
+        results3 <- offTargetAnalysis(inputFilePath, 
+            gRNAoutputName = "testPEgRNAs",
+            BSgenomeName = Hsapiens, chromToSearch = "chrX",
+            txdb = TxDb.Hsapiens.UCSC.hg19.knownGene, 
+            orgAnn = org.Hs.egSYMBOL, max.mismatch = 1, 
+            outputDir = outputDir, overwrite = TRUE,
+            PAM.size = 3L,
+            gRNA.size = 20L,
+            overlap.gRNA.positions = c(17L,18L),
+            PBS.length = 15,
+            corrected.seq = "T",
+            RT.template.pattern = "D$",
+            RT.template.length = 8:30, 
+            targeted.seq.length.change = 0,
+            bp.after.target.end = 15,
+            target.start = 20,
+            target.end = 20,
+            paired.orientation = "PAMin", min.gap = 20, max.gap = 90, 
+            primeEditing = TRUE, findPairedgRNAOnly = TRUE)
+
+```
+
 Exercise 1  
 ========================================================
 
